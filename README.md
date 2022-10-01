@@ -18,8 +18,8 @@ The first line is the player's starting position, starting at 1
 Example: "1 1" - player starts at top right corner 
 
 The following lines is a maze
-\# - wall
-W - win
+  \# - wall
+  W - win
 
 exaxmple of map:
 ```
