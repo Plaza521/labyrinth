@@ -3,6 +3,7 @@
 For players:
 
 You need to get to the WN cell
+---
 
 Movement is done with these commands:
   right - move right
@@ -11,12 +12,13 @@ Movement is done with these commands:
   up    - move up
 
 For map creators:
+---
 
 The first line is the player's starting position, starting at 1
 Example: "1 1" - player starts at top right corner 
 
 The following lines is a maze
-# - wall
+\# - wall
 W - win
 
 exaxmple of map:
