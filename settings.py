@@ -1,0 +1,6 @@
+ACT_UP    = "up"
+ACT_DOWN  = "down"
+ACT_LEFT  = "left"
+ACT_RIGHT = "right"
+OK = "OK"
+WIN = "WIN"
