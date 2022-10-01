@@ -11,6 +11,8 @@ Movement is done with these commands:
   down  - move down  
   up    - move up  
 
+Alse game have an "exit" command for exit from game.
+
 For map creators:
 ---
 

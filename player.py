@@ -44,7 +44,9 @@ class Player:
 				return OK
 			else:
 				return "You cant move to wall :("
-		return "Error :(. Use command \"up\", \"down\", \"left\" or \"down\""
+		if action == ACT_EXIT:
+			return ACT_EXIT
+		return "Error :(. Use command \"up\", \"down\", \"left\" or \"down\". Also use \"exit\" command to leave from game"
 
 	def view_around(self):
 		gamemap = self.gamemap
