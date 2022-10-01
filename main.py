@@ -6,11 +6,11 @@ def main():
 	pl = player.Player()
 
 	steps_cnt_global = 0
-	steps_cnt = 0
 
 	for mapname in load_maplist():
 		running = True
 		pl.load_map(mapname)
+		steps_cnt = 0
 		to_print = pl.view_around()
 		print("What you see:","┍━━━━━━┑",f"│{to_print[0]}│",f"│{to_print[1]}│",f"│{to_print[2]}│","┕━━━━━━┙",sep="\n")
 
