@@ -22,8 +22,9 @@ The following lines is a maze
 W - win
 
 exaxmple of map:
+```
 2 2
-```  #####
+  #####
       #
 # ### #
 #   # #
