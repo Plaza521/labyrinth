@@ -21,13 +21,14 @@ W - win
 
 exaxmple of map:
 2 2
-  #####
+```  #####
       #
 # ### #
 #   # #
 # #####
 #     #
 #####W#
+```
 
 To load map you need to write path to it in file "maplist.cfg".
 To write several maps in a row, enter them in a line, separating them with a space
