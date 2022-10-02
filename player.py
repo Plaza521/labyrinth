@@ -16,28 +16,28 @@ class Player:
 
 	def tick(self, action):
 		gamemap = self.gamemap
-		if action == ACT_UP:
+		if action in ACT_UP:
 			if '#' != gamemap[self.ypos-1][self.xpos]:
 				self.ypos -= 1
 				if 'W' == gamemap[self.ypos][self.xpos]: return WIN
 				return OK
 			else:
 				return "You cant move to wall :("
-		if action == ACT_DOWN:
+		if action in ACT_DOWN:
 			if '#' != gamemap[self.ypos+1][self.xpos]:
 				self.ypos += 1
 				if 'W' == gamemap[self.ypos][self.xpos]: return WIN
 				return OK
 			else:
 				return "You cant move to wall :("
-		if action == ACT_LEFT:
+		if action in ACT_LEFT:
 			if '#' != gamemap[self.ypos][self.xpos-1]:
 				self.xpos -= 1
 				if 'W' == gamemap[self.ypos][self.xpos]: return WIN
 				return OK
 			else:
 				return "You cant move to wall :("
-		if action == ACT_RIGHT:
+		if action in ACT_RIGHT:
 			if '#' != gamemap[self.ypos][self.xpos+1]:
 				self.xpos += 1
 				if 'W' == gamemap[self.ypos][self.xpos]: return WIN
@@ -46,36 +46,17 @@ class Player:
 				return "You cant move to wall :("
 		if action == ACT_EXIT:
 			return ACT_EXIT
-		return "Error :(. Use command \"up\", \"down\", \"left\" or \"down\". Also use \"exit\" command to leave from game"
+		return "Error :(. Use command \"up\"('u'), \"down\"('d'), \"left\"('l') or \"right\"('r'). Also use \"exit\" command to leave from game"
 
 	def view_around(self):
 		gamemap = self.gamemap
+		
+		to_print_ln = 0
 		to_print = ["","",""]
-		if gamemap[self.ypos-1][self.xpos-1] == "#": to_print[0]  = "██"
-		elif gamemap[self.ypos-1][self.xpos-1] == "W": to_print[0]  = "WN"
-		else: to_print[0]  = '  '
-		if gamemap[self.ypos-1][self.xpos] == "#": to_print[0] += "██"
-		elif gamemap[self.ypos-1][self.xpos] == "W": to_print[0] += "WN"
-		else: to_print[0] += '  '
-		if gamemap[self.ypos-1][self.xpos+1] == "#": to_print[0] += '██'
-		elif gamemap[self.ypos-1][self.xpos+1] == "W": to_print[0] += 'WN'
-		else: to_print[0] += '  '
-		if gamemap[self.ypos][self.xpos-1] == "#": to_print[1] += '██'
-		elif gamemap[self.ypos][self.xpos-1] == "W": to_print[1] += 'WN'
-		else: to_print[1] += '  '
-		if gamemap[self.ypos][self.xpos] == "#": to_print[1] += '██'
-		elif gamemap[self.ypos][self.xpos] == "W": to_print[1] += 'WN'
-		else: to_print[1] += '  '
-		if gamemap[self.ypos][self.xpos+1] == "#": to_print[1] += '██'
-		elif gamemap[self.ypos][self.xpos+1] == "W": to_print[1] += 'WN'
-		else: to_print[1] += '  '
-		if gamemap[self.ypos+1][self.xpos-1] == "#": to_print[2] += '██'
-		elif gamemap[self.ypos+1][self.xpos-1] == "W": to_print[2] += 'WN'
-		else: to_print[2] += '  '
-		if gamemap[self.ypos+1][self.xpos] == "#": to_print[2] +='██'
-		elif gamemap[self.ypos+1][self.xpos] == "W": to_print[2] +='WN'
-		else: to_print[2] += '  '
-		if gamemap[self.ypos+1][self.xpos+1] == "#": to_print[2] += '██'
-		elif gamemap[self.ypos+1][self.xpos+1] == "W": to_print[2] += 'WN'
-		else: to_print[2] += '  '
+		for line in [self.ypos-1, self.ypos, self.ypos+1]:
+			for column in [self.xpos-1, self.xpos, self.xpos+1]:
+				if gamemap[line][column] == "#": to_print[to_print_ln] += "██"
+				elif gamemap[line][column] == "W": to_print[to_print_ln] += "WN"
+				else: to_print[to_print_ln] += '  '
+			to_print_ln+=1
 		return to_print
