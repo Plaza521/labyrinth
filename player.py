@@ -50,11 +50,11 @@ class Player:
 
 	def view_around(self):
 		gamemap = self.gamemap
-		
+
 		to_print_ln = 0
 		to_print = ["","",""]
-		for line in [self.ypos-1, self.ypos, self.ypos+1]:
-			for column in [self.xpos-1, self.xpos, self.xpos+1]:
+		for line in range(self.ypos-1,self.ypos+2):
+			for column in range(self.xpos-1,self.xpos+2):
 				if gamemap[line][column] == "#": to_print[to_print_ln] += "██"
 				elif gamemap[line][column] == "W": to_print[to_print_ln] += "WN"
 				else: to_print[to_print_ln] += '  '
