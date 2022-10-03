@@ -1,14 +1,26 @@
-def load_map(mapname):
-	with open(mapname,'r') as mapfile:
-		startpos = list(map(int,mapfile.readline().split()))
-		filemap = mapfile.readlines()
-		gamemap = []
-		gamemap.append('#'*(len(filemap[0])+2))
-		for line in filemap:
-			gamemap.append(f"#{line[:-1]}#")
-		gamemap.append('#'*(len(filemap[0])+2))
-		return startpos,gamemap
+import sqlite3
+from sqlite3 import Error
 
-def load_maplist():
-	with open("maplist.cfg", 'r') as maplist:
-		return maplist.readline().split()
+def load_sqlite3_maps(path):
+	connection = None
+	try:
+		connection = sqlite3.connect(path)
+	except Error as e:
+		print(f"The error '{e}' occurred")
+	cur = connection.cursor()
+
+	cur.execute("SELECT * FROM maps;")
+	maps = cur.fetchmany(65535)
+	outmaplist = []
+
+	for mapid in range(len(maps)):
+		insertlist = []
+		current_map = maps[mapid]
+		insertlist.append(tuple([current_map[1],current_map[1]]))
+		gamemap = current_map[3].split()
+		outline = []
+		for line in gamemap: outline.append(line.replace('A','#').replace('.',' '))
+		insertlist.append(outline)
+		print(insertlist)
+		outmaplist.append(insertlist)
+	return outmaplist

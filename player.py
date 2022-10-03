@@ -9,10 +9,10 @@ class Player:
 	def pos(self):
 		return (self.xpos,self.ypos)
 
-	def load_map(self,mapname):
-		pos, self.gamemap = load_map(mapname)
-		self.xpos = pos[0]
-		self.ypos = pos[1]
+	def load_map(self,current_map):
+		self.xpos = current_map[0][0]
+		self.ypos = current_map[0][1]
+		self.gamemap = current_map[1]
 
 	def tick(self, action):
 		gamemap = self.gamemap
