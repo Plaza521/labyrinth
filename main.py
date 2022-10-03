@@ -2,7 +2,7 @@ import sys
 
 from settings import *
 import player
-from mapinclude import load_maplist, load_sqlite3_maps
+from mapinclude import load_sqlite3_maps
 
 def main():
 	pl = player.Player()
@@ -23,6 +23,7 @@ def main():
 			maplist = load_sqlite3_maps("maps.db")
 		except:
 			print("\"maps.db\" not exist :(. You need some maps!")
+			return
 
 	for current_map in maplist:
 		running = True

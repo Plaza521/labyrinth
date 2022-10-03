@@ -1,5 +1,4 @@
 from settings import *
-from mapinclude import load_map
 
 class Player:
 	def __init__(self):
@@ -15,35 +14,29 @@ class Player:
 		self.gamemap = current_map[1]
 
 	def tick(self, action):
+
 		gamemap = self.gamemap
+
+		def collision(ypos, xpos, direct):
+			if '#' != gamemap[ypos][xpos]:
+				if UP_NUM == direct: self.ypos -= 1
+				if DOWN_NUM == direct: self.ypos += 1
+				if LEFT_NUM == direct: self.xpos -= 1
+				if RIGHT_NUM == direct: self.xpos += 1
+				if 'W' == gamemap[self.ypos][self.xpos]: return WIN
+				return OK
+			else:
+				return "You cant move to wall :("
+
+
 		if action in ACT_UP:
-			if '#' != gamemap[self.ypos-1][self.xpos]:
-				self.ypos -= 1
-				if 'W' == gamemap[self.ypos][self.xpos]: return WIN
-				return OK
-			else:
-				return "You cant move to wall :("
+			return collision(self.ypos-1, self.xpos, UP_NUM)
 		if action in ACT_DOWN:
-			if '#' != gamemap[self.ypos+1][self.xpos]:
-				self.ypos += 1
-				if 'W' == gamemap[self.ypos][self.xpos]: return WIN
-				return OK
-			else:
-				return "You cant move to wall :("
+			return collision(self.ypos+1, self.xpos, DOWN_NUM)
 		if action in ACT_LEFT:
-			if '#' != gamemap[self.ypos][self.xpos-1]:
-				self.xpos -= 1
-				if 'W' == gamemap[self.ypos][self.xpos]: return WIN
-				return OK
-			else:
-				return "You cant move to wall :("
+			return collision(self.ypos, self.xpos-1, LEFT_NUM)
 		if action in ACT_RIGHT:
-			if '#' != gamemap[self.ypos][self.xpos+1]:
-				self.xpos += 1
-				if 'W' == gamemap[self.ypos][self.xpos]: return WIN
-				return OK
-			else:
-				return "You cant move to wall :("
+			return collision(self.ypos, self.xpos+1, RIGHT_NUM)
 		if action == ACT_EXIT:
 			return ACT_EXIT
 		return "Error :(. Use command \"up\"('u'), \"down\"('d'), \"left\"('l') or \"right\"('r'). Also use \"exit\" command to leave from game"

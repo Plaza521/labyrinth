@@ -16,11 +16,7 @@ def append_zeros(number, outlen=5):
 	return f"\"{'0'*(outlen-len(str(number))) + str(number)}\""
 
 def list_to_string(list_in):
-	out_string = ""
-	for elem in list_in:
-		out_string += elem+' '
-	return f"\"{out_string[:-1]}\""
-
+	return '"' + "".join([elem + ' ' for elem in list_in])[:-1] + '"'
 
 def main():
 	os.system("del maps.db")
@@ -34,7 +30,6 @@ def main():
 		startpos, gamemap = load_map(path)
 		outmap = []
 		for line in gamemap: outmap.append(line.replace(" ", ".").replace("#","A"))
-
 
 		conn = sqlite3.connect('maps.db')
 		cur = conn.cursor()
