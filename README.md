@@ -8,10 +8,10 @@ You need to get to the WN cell
 ---
 
 Movement is done with these commands:  
-  right(or r) - move right  
-  left(or l)  - move left  
-  down(or d)  - move down  
-  up(or u)    - move up  
+  right(or d) - move right  
+  left(or a)  - move left  
+  down(or s)  - move down  
+  up(or w)    - move up  
 
 Alse game have an "exit" command for exit from game.
 

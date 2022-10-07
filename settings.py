@@ -1,7 +1,7 @@
-ACT_UP = ("up", 'u')
-ACT_DOWN = ("down", 'd')
-ACT_LEFT = ("left", 'l')
-ACT_RIGHT = ("right", 'r')
+ACT_UP = ("up", 'w')
+ACT_DOWN = ("down", 's')
+ACT_LEFT = ("left", 'a')
+ACT_RIGHT = ("right", 'd')
 ACT_EXIT = "exit"
 
 UP_NUM = 0
