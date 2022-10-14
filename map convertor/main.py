@@ -7,14 +7,14 @@ def load_map(mapname: str) -> list:
         startpos = list(map(int, mapfile.readline().split()))
         filemap = mapfile.readlines()
         gamemap = []
-        gamemap.append('#'*(len(filemap[0])+2))
+        gamemap.append('#' * (len(filemap[0]) + 2))
         for line in filemap:
             gamemap.append(f"#{line[:-1]}#")
-        gamemap.append('#'*(len(filemap[0])+2))
+        gamemap.append('#' * (len(filemap[0]) + 2))
         return startpos, gamemap
 
 
-def append_zeros(number: int, outlen: int=5) -> str:
+def append_zeros(number: int, outlen: int = 5) -> str:
     return f"\"{'0'*(outlen-len(str(number))) + str(number)}\""
 
 
@@ -34,7 +34,7 @@ def main() -> None:
         startpos, gamemap = load_map(path)
         outmap = []
         for line in gamemap:
-            outmap.append(line.replace(" ", ".").replace("#","A"))
+            outmap.append(line.replace(" ", "."))
 
         conn = sqlite3.connect('maps.db')
         cur = conn.cursor()
@@ -45,10 +45,6 @@ def main() -> None:
             mapinfo TEXT);
         """)
         conn.commit()
-        maps_map = (append_zeros(mapid),
-                    append_zeros(startpos[0]),
-                    append_zeros(startpos[0]),
-                    list_to_string(outmap))
         cur.execute("""INSERT INTO maps(mapid, startx, starty, mapinfo)
            VALUES({}, {}, {}, {});""".format('00003',
                                              append_zeros(startpos[0]),
@@ -56,6 +52,7 @@ def main() -> None:
                                              list_to_string(outmap)))
         conn.commit()
         mapid += 1
+
 
 if __name__ == '__main__':
     main()

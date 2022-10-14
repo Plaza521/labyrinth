@@ -3,6 +3,7 @@ ACT_DOWN = ("down", 's')
 ACT_LEFT = ("left", 'a')
 ACT_RIGHT = ("right", 'd')
 ACT_EXIT = "exit"
+ACT_LOOR = "You can't go here, or game will be crashed"
 
 UP_NUM = 0
 DOWN_NUM = 1

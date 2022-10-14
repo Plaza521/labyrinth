@@ -21,7 +21,7 @@ def load_sqlite3_maps(path: str) -> list:
         gamemap = current_map[3].split()
         outline = []
         for line in gamemap:
-            outline.append(line.replace('A', '#').replace('.', ' '))
+            outline.append(line.replace('.', ' '))
         insertlist.append(outline)
         outmaplist.append(insertlist)
     return outmaplist
