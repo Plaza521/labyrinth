@@ -40,45 +40,53 @@ class Player:
             try:
                 self.ypos -= 1
                 self.view_around()
-                return self._check_collision(self.ypos - 1,
-                                             self.xpos,
-                                             UP_NUM)
             except IndexError:
                 self.ypos = old_ypos
                 return ACT_LOOR
+            self.ypos += 1
+
+            return self._check_collision(self.ypos - 1,
+                                         self.xpos,
+                                         UP_NUM)
 
         if action in ACT_DOWN:
             try:
                 self.ypos += 1
                 self.view_around()
-                return self._check_collision(self.ypos + 1,
-                                             self.xpos,
-                                             DOWN_NUM)
             except IndexError:
                 self.ypos = old_ypos
                 return ACT_LOOR
+            self.ypos -= 1
+
+            return self._check_collision(self.ypos + 1,
+                                         self.xpos,
+                                         DOWN_NUM)
 
         if action in ACT_LEFT:
             try:
                 self.xpos -= 1
                 self.view_around()
-                return self._check_collision(self.ypos,
-                                             self.xpos - 1,
-                                             LEFT_NUM)
             except IndexError:
                 self.xpos = old_xpos
                 return ACT_LOOR
+            self.xpos += 1
+
+            return self._check_collision(self.ypos,
+                                         self.xpos - 1,
+                                         LEFT_NUM)
 
         if action in ACT_RIGHT:
             try:
                 self.xpos += 1
                 self.view_around
-                return self._check_collision(self.ypos,
-                                             self.xpos + 1,
-                                             RIGHT_NUM)
             except IndexError:
                 self.xpos = old_xpos
                 return ACT_LOOR
+        self.xpos -= 1
+
+        return self._check_collision(self.ypos,
+                                     self.xpos + 1,
+                                     RIGHT_NUM)
 
         if action == ACT_EXIT:
             return ACT_EXIT
